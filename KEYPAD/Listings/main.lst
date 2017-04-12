@@ -1,0 +1,99 @@
+C51 COMPILER V9.55   MAIN                                                                  05/04/2016 14:56:46 PAGE 1   
+
+
+C51 COMPILER V9.55, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          /*
+   2          PROJECT Name: LED
+   3          Author      : Etiq Technologies
+   4          Created on  :4 May 2016
+   5          Description: A 4x4 matrix keyboard is interfaced in the project.The key pressed is displayed on LCD.
+   6          
+   7          */
+   8          
+   9          
+  10          #include <REG8253.H>
+  11          #include "delay.h"           //delay header
+  12          #include "lcd.h"
+  13          
+  14          void main()
+  15          {
+  16   1        LCD_init();               //initialises the LCD 
+  17   1        
+  18   1        /* keypad identification columns are connected to lower four
+  19   1         bits of the port and rows to the higher pins of the port.
+  20   1         columns are configured output and rows configured as input pins  
+  21   1         Each column is made low and rows are scanned continously for input
+  22   1         low.corresponding row with low input is identified and the respective 
+  23   1         key identified*/
+  24   1        
+  25   1        P0=0x0F;                 // all row pins configured as input pins
+  26   1        while(1)
+  27   1        {
+  28   2         LCD_write_text_at(1,1 ,"PRESS ANY KEY");
+  29   2         /*1st column made low keeping other columns high and scan for the rows*/
+  30   2         P0=0XFE;                
+  31   2         if(P0_4==0)
+  32   2          LCD_write_char_at(2,1,'1');
+  33   2         if(P0_5==0)
+  34   2         LCD_write_char_at(2,1,'4');
+  35   2         if(P0_6==0)
+  36   2         LCD_write_char_at(2,1,'7');
+  37   2         if(P0_7==0)
+  38   2         LCD_write_char_at(2,1,'*');
+  39   2         
+  40   2         /*2nd column made low keeping other columns high and scan for the rows*/
+  41   2         P0=0xFD;
+  42   2         if(P0_4==0)
+  43   2         LCD_write_char_at(2,1,'2');
+  44   2         if(P0_5==0)
+  45   2         LCD_write_char_at(2,1,'5');
+  46   2         if(P0_6==0)
+  47   2         LCD_write_char_at(2,1,'8');
+  48   2         if(P0_7==0)
+  49   2         LCD_write_char_at(2,1,'0');
+  50   2         
+  51   2         /*3rd column made low keeping other columns high and scan for the rows*/
+  52   2         P0=0xFB;
+  53   2         if(P0_4==0)
+  54   2         LCD_write_char_at(2,1,'3');
+C51 COMPILER V9.55   MAIN                                                                  05/04/2016 14:56:46 PAGE 2   
+
+  55   2         if(P0_5==0)
+  56   2         LCD_write_char_at(2,1,'6');
+  57   2         if(P0_6==0)
+  58   2         LCD_write_char_at(2,1,'9');
+  59   2         if(P0_7==0)
+  60   2         LCD_write_char_at(2,1,'#');
+  61   2         
+  62   2         /*4th column made low keeping other columns high and scan for the rows*/
+  63   2         P0=0xF7;
+  64   2         if(P0_4==0)
+  65   2         LCD_write_char_at(2,1,'A');
+  66   2         if(P0_5==0)
+  67   2         LCD_write_char_at(2,1,'B');
+  68   2         if(P0_6==0)
+  69   2         LCD_write_char_at(2,1,'C');
+  70   2         if(P0_7==0)
+  71   2         LCD_write_char_at(2,1,'D');
+  72   2        }
+  73   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    229    ----
+   CONSTANT SIZE    =     14    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
